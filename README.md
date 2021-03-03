@@ -16,6 +16,6 @@ Attempt at implementing GLOM
  - Returns matrix shaped [number of segments, embedding_size]
 
 TODO: 
-[] Clustering of top layer embeddings
-[] Top-Down. 
+- [ ] Clustering of top layer embeddings
+- [ ] Top-Down. 
 

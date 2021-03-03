@@ -1,6 +1,6 @@
 # GLOM
 Attempt at implementing GLOM
-##Bottom-Up implementation: 
+## Bottom-Up implementation: 
 ## Functions: 
 ### conv_ind_strides (image_dim, kernel,strides) :
 - generates indices to segment an image by kernel shape with a defined stride 

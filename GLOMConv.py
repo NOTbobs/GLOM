@@ -44,3 +44,20 @@ def BT_convolution(embeddings,indices,parameters): #Take some number of adjacent
   output=np.dot(aggregate,parameters.T) 
   return output
 
+
+#top-bottom: 
+#input the cluster of vectors. will return the embeddings discovered. 
+#embeddings should be shaped [strides,shape embeddigns]
+def TB_convolution(embeddings,cluster,indices,parameters):  
+  _,kh,kw=indices.shape
+  embeddings=np.array(embeddings) #The only reason is here is because if you used BT_convolution, it converted teh numpy array to a jax.numpy array and unfortunately jax arrays are immuntable. 
+  
+  for i in range(len(embeddings)):  #iterate through all the embeddings, 
+    if i not in cluster: #check for those NOT clustered into one cluster and zero the embedding. 
+      embeddings[i]=np.zeros(10) 
+
+  ###can be replaced with anysized NN: 
+  output =np.dot(embeddings,parameters).reshape(-1,kh,kw,len(parameters)) #or whatever the shaped parameter is
+  return output
+
+

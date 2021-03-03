@@ -12,7 +12,7 @@ Attempt at implementing GLOM
  - Returns matrix shaped [segments,desired embedding size]
 ### BT_convolution(embeddings,indices,parameters): 
  - generates a given shaped embedding after convolving previous layer embeddings. 
- - Parameters should be shaped [desired_embedding_size, kerelwidth*kernelheight*previous_layer_embedding_size] 
+ - Parameters should be shaped [desired_embedding_size, kerelwidth * kernelheight * previous_layer_embedding_size] 
  - Returns matrix shaped [number of segments, embedding_size]
 
 TODO: 

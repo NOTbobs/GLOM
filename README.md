@@ -16,6 +16,8 @@ Attempt at implementing GLOM
  - Returns matrix shaped [number of segments, embedding_size]
 
 TODO: 
+- [ ] Top-Down activation.  
 - [ ] Clustering of top layer embeddings
-- [ ] Top-Down. 
+- [ ] Clustering of intermediate layer embeddings. 
+- [ ] Marking pixels for segmentation.
 

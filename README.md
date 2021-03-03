@@ -14,9 +14,14 @@ Attempt at implementing GLOM
  - generates a given shaped embedding after convolving previous layer embeddings. 
  - Parameters should be shaped [desired_embedding_size, kerelwidth * kernelheight * previous_layer_embedding_size] 
  - Returns matrix shaped [number of segments, embedding_size]
+### TB_convolution(embeddings,cluster,indices,parameters):  
+- This is a preliminary implementation of a 'top-down' network. 
+- generates several embeddings shaped like a lower level embedding from a single upper level embedding. 
+- You must indicate which embeddings you want to pass top-down using the cluster parameter in the form of a list. 
+- Obviously layer_2=np.dot(layer1,parameter.T) is not the same as layer1=np.dot(layer2,parameter), but as long as embeddings are clustered/compared within that vector space it should be fine. GLOM paper mentions that the top-down network can be a complete different network. However to save space I opted to reuse the same parameters as bottom-up. 
 
 TODO: 
-- [ ] Top-Down activation.  
+- [ ] Top-Down activation. 
 - [ ] Clustering of top layer embeddings
 - [ ] Clustering of intermediate layer embeddings. 
 - [ ] Marking pixels for segmentation.

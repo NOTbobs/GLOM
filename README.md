@@ -10,7 +10,7 @@ Attempt at implementing GLOM
  - generates a given shaped embedding for each image segment by performing a dot product on that patch with given parameters. 
  - Parameters should be shaped [desired embedding size, kernelwidth * kernelheight * image depth] 
  - Returns matrix shaped [segments,desired embedding size]
-###BT_convolution(embeddings,indices,parameters): 
+### BT_convolution(embeddings,indices,parameters): 
  - generates a given shaped embedding after convolving previous layer embeddings. 
  - Parameters should be shaped [desired_embedding_size, kerelwidth*kernelheight*previous_layer_embedding_size] 
  - Returns matrix shaped [number of segments, embedding_size]

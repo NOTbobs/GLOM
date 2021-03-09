@@ -1,5 +1,7 @@
 # GLOM
 Attempt at implementing GLOM
+
+
 ## Bottom-Up implementation: 
 ## Functions: 
 ### conv_ind_strides (image_dim, kernel,strides) :

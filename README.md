@@ -14,10 +14,11 @@ Attempt at implementing GLOM
  - generates a given shaped embedding after convolving previous layer embeddings. 
  - Parameters should be shaped [desired_embedding_size, kerelwidth * kernelheight * previous_layer_embedding_size] 
  - Returns matrix shaped [number of segments, embedding_size]
-
+### trace_convolution(interested_embedding,ind,starting_layer,total_layers): 
+ - generates indices at the level of the original image representing a stride or embedding that you are interested in
 TODO: 
 - [ ] Top-Down activation. 
-- [ ] Clustering of top layer embeddings
-- [ ] Clustering of intermediate layer embeddings. 
-- [ ] Marking pixels for segmentation.
+- [X] Clustering of top layer embeddings 
+- [X] Clustering of intermediate layer embeddings. 
+- [X ] Marking pixels for segmentation.
 

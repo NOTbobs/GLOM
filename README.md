@@ -17,7 +17,11 @@ Attempt at implementing GLOM
  - Parameters should be shaped [desired_embedding_size, kerelwidth * kernelheight * previous_layer_embedding_size] 
  - Returns matrix shaped [number of segments, embedding_size]
 ### trace_convolution(interested_embedding,ind,starting_layer,total_layers): 
- - generates indices at the level of the original image representing a stride or embedding that you are interested in
+ - generates indices at the level of the original image representing a stride or embedding that you are interested in. 
+
+### Notes: 
+- Clustering of intermediate layers embeddings using DBSCAN is sufficient to allow segmentation of face with background without requiring any training. 
+
 TODO: 
 - [ ] Top-Down activation. 
 - [X] Clustering of top layer embeddings 

@@ -8,10 +8,10 @@ def conv_ind_strides (image_dim, kernel,strides=[1,1]):
   ind=[] 
   hselect=- sH
   wselect=0 
-  while hselect+kh<=imH-kh: 
+  while hselect+kh+sH<=imH: 
     hselect+=sH
     wselect=0
-    while wselect<=imW-kw: 
+    while wselect+kw<=imW:: 
       ind.append(all_values[hselect:hselect+kh,wselect:wselect+kw])
       wselect+=sW
   return ind
@@ -45,19 +45,24 @@ def BT_convolution(embeddings,indices,parameters): #Take some number of adjacent
   return output
 
 
-#top-bottom: 
-#input the cluster of vectors. will return the embeddings discovered. 
-#embeddings should be shaped [strides,shape embeddigns]
-def TB_convolution(embeddings,cluster,indices,parameters):  
-  _,kh,kw=indices.shape
-  embeddings=np.array(embeddings) #The only reason is here is because if you used BT_convolution with a jax.nn activation function, it would have converted the numpy array to a jax.numpy array and unfortunately jax arrays are immuntable. 
-  
-  for i in range(len(embeddings)):  #iterate through all the embeddings, 
-    if i not in cluster: #check for those NOT clustered into one cluster and zero the embedding. 
-      embeddings[i]=np.zeros(10) 
+#final code: 
+def trace_convolution(interested_stride,ind,starting_layer,total_layers): 
+  #interested_stride #top level, interested in the third stride. 
+  #layer=
+  #total_layers #top level  (0 is bottom, 2 is top) 
+  #total_layers=2
+  #Top layer
+  current_layer=ind[starting_layer][interested_stride].reshape(len(ind[starting_layer][interested_stride]),-1).flatten() #pulls the stride of interest.  # generates 9 indices. This will start
+  #the entire process. 
 
-  ###can be replaced with anysized NN: 
-  output =np.dot(embeddings,parameters).reshape(-1,kh,kw,len(parameters)) #or whatever the shaped parameter is
-  return output
+  for layer in range(total_layers-1,-1,-1): #iterate backwards 
+    next_layer=[] #store the next_layer indices give the above layer indices. 
+    for indices in current_layer: 
+      next_layer.append(ind[layer][indices]) #gather the indices, this will output a 9,10,10 shape as there were 9 blocks, with 10x10 indices. 
+    #once this is done, reshape into a list of indices. 
+    
+    next_layer=np.array(next_layer).flatten() 
+    current_layer=next_layer #hand off new indices as currnt layer, and allow the next layer to iterate. 
+  return current_layer
 
 
